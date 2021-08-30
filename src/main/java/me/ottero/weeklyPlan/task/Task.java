@@ -2,21 +2,23 @@ package me.ottero.weeklyPlan.task;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import me.ottero.weeklyPlan.priority.Priority;
 
 @Entity
 public class Task {
 	@Id
 	private Integer id;
 	private String description;
+
 	private String startDateTime;
+
 	private String finishDateTime;
+
 	private Integer idPriority;
 
-	@ManyToOne
-	private Priority priority;
+	/*
+	 * @ManyToOne
+	 * private Priority priority;
+	 */
 
 	public Task(Integer id, String description, String startDateTime, String finishDateTime, Integer idPriority) {
 		super();

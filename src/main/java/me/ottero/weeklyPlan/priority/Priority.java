@@ -9,6 +9,7 @@ public class Priority {
 	@Id
 	private Integer id;
 	private String description;
+
 	private String uiStyle;
 
 	public Priority(Integer id, String description, String uiStyle) {
