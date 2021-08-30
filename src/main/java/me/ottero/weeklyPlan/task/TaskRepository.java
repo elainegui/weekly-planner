@@ -1,5 +1,8 @@
 package me.ottero.weeklyPlan.task;
 
-public class TaskRepository {
+import org.springframework.data.repository.CrudRepository;
 
+public interface TaskRepository extends CrudRepository<Task, Integer> {
+
+// public List<Task> findByTaskId(String taskId);
 }

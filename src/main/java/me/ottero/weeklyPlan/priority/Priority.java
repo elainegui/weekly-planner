@@ -1,22 +1,32 @@
 package me.ottero.weeklyPlan.priority;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Priority {
-	private int id;
+
+	@Id
+	private Integer id;
 	private String description;
 	private String uiStyle;
 
-	public Priority(int id, String description, String uiStyle) {
+	public Priority(Integer id, String description, String uiStyle) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.uiStyle = uiStyle;
 	}
 
-	public int getId() {
+	public Priority() {
+		super();
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

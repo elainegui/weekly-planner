@@ -1,17 +1,41 @@
 package me.ottero.weeklyPlan.task;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import me.ottero.weeklyPlan.priority.Priority;
+
+@Entity
 public class Task {
-	private int id;
+	@Id
+	private Integer id;
 	private String description;
 	private String startDateTime;
 	private String finishDateTime;
-	private int priorityId;
+	private Integer idPriority;
 
-	public int getId() {
+	@ManyToOne
+	private Priority priority;
+
+	public Task(Integer id, String description, String startDateTime, String finishDateTime, Integer idPriority) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.startDateTime = startDateTime;
+		this.finishDateTime = finishDateTime;
+		this.idPriority = idPriority;
+	}
+
+	public Task() {
+		super();
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -39,24 +63,12 @@ public class Task {
 		this.finishDateTime = finishDateTime;
 	}
 
-	public int getPriorityId() {
-		return priorityId;
+	public Integer getIdPriority() {
+		return idPriority;
 	}
 
-	public void setPriorityId(int priorityId) {
-		this.priorityId = priorityId;
+	public void setIdPriority(Integer idPriority) {
+		this.idPriority = idPriority;
 	}
-
-	public Task(int id, String description, String startDateTime, String finishDateTime, int priorityId) {
-		super();
-		this.id = id;
-		this.description = description;
-		this.startDateTime = startDateTime;
-		this.finishDateTime = finishDateTime;
-		this.priorityId = priorityId;
-	}
-
-
-
 
 }
