@@ -20,3 +20,32 @@ CREATE TABLE `weekly_planner`.`task` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Table for tasks';
+
+
+
+
+ALTER TABLE `weekly_planner`.`task` 
+DROP FOREIGN KEY `id`;
+ALTER TABLE `weekly_planner`.`task` 
+CHANGE COLUMN `startDateTime` `start_date_time` DATETIME NOT NULL ,
+CHANGE COLUMN `finishDateTime` `finish_date_time` DATETIME NOT NULL ,
+CHANGE COLUMN `priorityId` `priority_id` INT(11) NOT NULL ;
+ALTER TABLE `weekly_planner`.`task` 
+ADD CONSTRAINT `id`
+  FOREIGN KEY (`priority_id`)
+  REFERENCES `weekly_planner`.`priority` (`id`);
+  
+  
+  
+ALTER TABLE `weekly_planner`.`priority` 
+CHANGE COLUMN `uiStyle` `ui_style` VARCHAR(45) NOT NULL COMMENT 'This field defines a value to allow the UI to apply the corresponding graphical features to each priority.' ;
+
+
+ALTER TABLE `weekly_planner`.`task` 
+DROP FOREIGN KEY `id`;
+ALTER TABLE `weekly_planner`.`task` 
+CHANGE COLUMN `priority_id` `id_priority` INT(11) NOT NULL ;
+ALTER TABLE `weekly_planner`.`task` 
+ADD CONSTRAINT `id`
+  FOREIGN KEY (`id_priority`)
+  REFERENCES `weekly_planner`.`priority` (`id`);
