@@ -2,6 +2,10 @@ package me.ottero.weeklyPlan.task;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import me.ottero.weeklyPlan.priority.Priority;
 
 @Entity
 public class Task {
@@ -13,20 +17,21 @@ public class Task {
 
 	private String finishDateTime;
 
-	private Integer idPriority;
+	// private Integer idPriority;
 
-	/*
-	 * @ManyToOne
-	 * private Priority priority;
-	 */
 
-	public Task(Integer id, String description, String startDateTime, String finishDateTime, Integer idPriority) {
+	@ManyToOne
+	@JoinColumn(name = "id_priority")
+	private Priority priority;
+
+
+	public Task(Integer id, String description, String startDateTime, String finishDateTime, Priority priority) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.startDateTime = startDateTime;
 		this.finishDateTime = finishDateTime;
-		this.idPriority = idPriority;
+		this.priority = priority;
 	}
 
 	public Task() {
@@ -65,12 +70,12 @@ public class Task {
 		this.finishDateTime = finishDateTime;
 	}
 
-	public Integer getIdPriority() {
-		return idPriority;
+	public Priority getPriority() {
+		return priority;
 	}
 
-	public void setIdPriority(Integer idPriority) {
-		this.idPriority = idPriority;
+	public void setPriority(Priority priority) {
+		this.priority = priority;
 	}
 
 }
