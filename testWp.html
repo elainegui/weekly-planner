@@ -8,9 +8,50 @@
 <table id="planner" border="1"></table>
 
 <script>
+
+    let plannerTable = document.getElementById("planner");
+
+    function createTableHeader(){
+        let headerTextNodes = ["Hour", "Monday", "Tuesday"];
+        let thead = plannerTable.createTHead();
+        let row = thead.insertRow();
+
+        for(let headerText of headerTextNodes){
+            let th = document.createElement("th");
+           let day = document.createTextNode(headerText);
+           th.appendChild(day);
+           row.appendChild(th);
+        }
+    }
+
     function populateTable(table, jsonData) {
-        let tableContent = JSON.parse(jsonData);
-        tableContent.forEach(rowContent => addRow(table, ...rowContent));
+      //  let tableContent = JSON.parse(jsonData);
+      //  console.log(tableContent);
+      //  tableContent.forEach(rowContent => addRow(table, ...rowContent));
+
+        let rowContent1 = [];
+        let rowContent2 = [];
+        for (let data of jsonData){
+            if(data.startDateTime.includes("2021-08-22")&& data.startDateTime.includes("06:00")){
+                rowContent1.push("06:00");
+                rowContent1.push(data.description);
+            }
+
+            if(data.startDateTime.includes("2021-08-23")&& data.startDateTime.includes("06:00")){
+                rowContent1.push(data.description);
+            }
+
+            if(data.startDateTime.includes("2021-08-22")&& data.startDateTime.includes("07:00")){
+                rowContent2.push("07:00");
+                rowContent2.push(data.description);
+            }
+
+            if(data.startDateTime.includes("2021-08-23")&& data.startDateTime.includes("07:00")){
+                rowContent2.push(data.description);
+            }
+
+         console.log(rowContent1);
+        }
     }
 
     function addRow(table, ...cellsText) {
@@ -24,8 +65,33 @@
         cell.appendChild(text);
     }
 
-    let plannerTable = document.getElementById("planner");
-    let jsonData = '[["Hello", "World", "Ireland"],["Ola", "Mundo", "Irlanda"]]';
+
+
+
+
+   // let jsonData = '[["Hello", "World", "Ireland"],["Ola", "Mundo", "Irlanda"]]';
+
+
+    let jsonData =   [
+        {
+            "description": "wake up",
+            "startDateTime": "2021-08-22 06:00:00"
+        },
+        {
+            "description": "java",
+            "startDateTime": "2021-08-22 07:00:00"
+        },
+        {
+            "description": "meditation",
+            "startDateTime": "2021-08-23 06:00:00"
+        },
+        {
+            "description": "study finance",
+            "startDateTime": "2021-08-23 07:00:00",
+        }
+    ]
+
+    createTableHeader();
     populateTable(plannerTable, jsonData);
 
 </script>
