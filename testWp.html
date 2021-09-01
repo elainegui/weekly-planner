@@ -11,52 +11,56 @@
 
     let plannerTable = document.getElementById("planner");
 
-    function createTableHeader(){
-        let headerTextNodes = ["Hour", "Monday", "Tuesday"];
-        let thead = plannerTable.createTHead();
-        let row = thead.insertRow();
+   function createTableHeader() {
+        let headerText = ["Hour", "Monday", "Tuesday"];
+        addRow(plannerTable, headerText);
 
-        for(let headerText of headerTextNodes){
-            let th = document.createElement("th");
-           let day = document.createTextNode(headerText);
-           th.appendChild(day);
-           row.appendChild(th);
-        }
+
+
+        // for (let headerText of headerTextNodes) {
+        //     let th = document.createElement("th");
+        //     let day = document.createTextNode(headerText);
+        //     th.appendChild(day);
+        //     row.appendChild(th);
+        // }
     }
 
     function populateTable(table, jsonData) {
-      //  let tableContent = JSON.parse(jsonData);
-      //  console.log(tableContent);
-      //  tableContent.forEach(rowContent => addRow(table, ...rowContent));
+        //  let tableContent = JSON.parse(jsonData);
+
+        createTableHeader();
 
         let rowContent1 = [];
         let rowContent2 = [];
-        for (let data of jsonData){
-            if(data.startDateTime.includes("2021-08-22")&& data.startDateTime.includes("06:00")){
+        for (let data of jsonData) {
+            if (data.startDateTime.includes("2021-08-22") && data.startDateTime.includes("06:00")) {
                 rowContent1.push("06:00");
                 rowContent1.push(data.description);
             }
 
-            if(data.startDateTime.includes("2021-08-23")&& data.startDateTime.includes("06:00")){
+            if (data.startDateTime.includes("2021-08-23") && data.startDateTime.includes("06:00")) {
                 rowContent1.push(data.description);
             }
 
-            if(data.startDateTime.includes("2021-08-22")&& data.startDateTime.includes("07:00")){
+            if (data.startDateTime.includes("2021-08-22") && data.startDateTime.includes("07:00")) {
                 rowContent2.push("07:00");
                 rowContent2.push(data.description);
             }
 
-            if(data.startDateTime.includes("2021-08-23")&& data.startDateTime.includes("07:00")){
+            if (data.startDateTime.includes("2021-08-23") && data.startDateTime.includes("07:00")) {
                 rowContent2.push(data.description);
             }
 
-         console.log(rowContent1);
         }
+        addRow(table, rowContent1);
+        addRow(table,rowContent2);
     }
 
-    function addRow(table, ...cellsText) {
+    function addRow(table, cellsText) {
+        console.log(cellsText.length);
         let row = table.insertRow();
-        cellsText.forEach(cellText => addCell(row, cellText));
+      cellsText.forEach(cellText => addCell(row, cellText));
+
     }
 
     function addCell(row, contentText) {
@@ -66,13 +70,10 @@
     }
 
 
+    // let jsonData = '[["Hello", "World", "Ireland"],["Ola", "Mundo", "Irlanda"]]';
 
 
-
-   // let jsonData = '[["Hello", "World", "Ireland"],["Ola", "Mundo", "Irlanda"]]';
-
-
-    let jsonData =   [
+    let jsonData = [
         {
             "description": "wake up",
             "startDateTime": "2021-08-22 06:00:00"
@@ -91,7 +92,7 @@
         }
     ]
 
-    createTableHeader();
+
     populateTable(plannerTable, jsonData);
 
 </script>
