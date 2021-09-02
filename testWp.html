@@ -15,9 +15,9 @@
 
     populateTableHeader();
 
+    populateTableTimeColumn();
+
     function tableCreate(){
-
-
 
        let numberOfRows =5;
        let numberOfColumns = 3;
@@ -39,13 +39,11 @@
         populateRow(plannerTable, headerText);
     }
 
-    function populateRow(table, textHeader) {
+    function populateRow(table, rowTexts) {
 
-        for(let i = 0;i<textHeader.length;i++){
-             addCellsText(plannerTable.childNodes[0].childNodes[0], textHeader[i],i);
+        for(let i = 0;i<rowTexts.length;i++){
+             addCellsText(plannerTable.childNodes[0].childNodes[0], rowTexts[i],i);
         }
-       // cellsText.forEach(cellText => addCellsText(plannerTable.childNodes[0].childNodes[0], cellText));
-
     }
 
     function addCellsText(row, textInCell,i) {
@@ -54,6 +52,15 @@
             row.childNodes[i].appendChild(text);
 
     }
+
+    function populateTableTimeColumn() {
+        let timeBegin = 6;
+        for (let i = 1;i<=4;i++){
+        plannerTable.childNodes[0].childNodes[i].childNodes[0].appendChild(document.createTextNode("0"+timeBegin+":00"));
+        timeBegin++;}
+    }
+
+    
 
     /*
        function createTableHeader() {
