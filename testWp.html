@@ -17,6 +17,7 @@
 
     populateTableTimeColumn();
 
+
     function tableCreate(){
 
        let numberOfRows =5;
@@ -27,6 +28,8 @@
             for(let j = 0; j < numberOfColumns; j++){
 
                 let td = tr.insertCell();
+
+                //css style
                 plannerTable.style.border = '1px solid black';
                 td.style.width='100px';
                 td.style.height = '30px';
@@ -57,10 +60,92 @@
         let timeBegin = 6;
         for (let i = 1;i<=4;i++){
         plannerTable.childNodes[0].childNodes[i].childNodes[0].appendChild(document.createTextNode("0"+timeBegin+":00"));
-        timeBegin++;}
+        timeBegin++;
+        }
     }
 
-    
+    let jsonData = [
+
+        //for Monday
+        {
+            "description": "wake up1",
+            "dayOfWeek": "Monday",
+            "startTime":"06:00"
+        },
+
+        {
+            "description": "java1",
+            "dayOfWeek": "Monday",
+            "startTime":"08:00"
+        },
+        {
+            "description": "meditation1",
+            "dayOfWeek": "Monday",
+            "startTime":"09:00"
+        },
+
+        //for Tuesday
+        {
+            "description": "wake up2",
+            "dayOfWeek": "Tuesday",
+            "startTime":"06:00"
+        },
+        {
+            "description": "breakfast2",
+            "dayOfWeek": "Tuesday",
+            "startTime":"07:00"
+        },
+        {
+            "description": "java2",
+            "dayOfWeek": "Tuesday",
+            "startTime":"08:00"
+        },
+        {
+            "description": "meditation2",
+            "dayOfWeek": "Tuesday",
+            "startTime":"09:00"
+        }
+    ]
+
+
+
+
+    function populateTable(table, jsonData) {
+        //  let tableContent = JSON.parse(jsonData);
+
+        let rowContent1 = [];
+        let rowContent2 = [];
+        for (let data of jsonData) {
+
+
+            if(data.dayOfWeek.includes("Monday")){
+                //column number starts from zero
+                let columnNumber= 1;
+                allocateTaskDescription(data.description, data.startTime,columnNumber);
+            }
+
+            if(data.dayOfWeek.includes("Tuesday")){
+                //column number starts from zero
+                let columnNumber= 2;
+                allocateTaskDescription(data.description, data.startTime,columnNumber);
+            }
+        }
+    }
+
+    function allocateTaskDescription(taskDescription, startTime, columnN) {
+        //extract hour integer
+        let timeDigit = parseInt(startTime.charAt(1));
+
+        //calculate which row the task description will be in
+        let rowNumber = timeDigit-5;
+        let row = plannerTable.childNodes[0].childNodes[rowNumber];
+        addCellsText(row, taskDescription,columnN)
+    }
+
+
+    populateTable(plannerTable, jsonData);
+
+
 
     /*
        function createTableHeader() {
