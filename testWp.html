@@ -10,6 +10,8 @@
 <script>
 
     let plannerTable = document.getElementById("planner");
+    let numberOfRows =19;
+    let numberOfColumns = 8;
 
     tableCreate();
 
@@ -17,11 +19,7 @@
 
     populateTableTimeColumn();
 
-
     function tableCreate(){
-
-       let numberOfRows =5;
-       let numberOfColumns = 3;
 
         for(let i = 0; i < numberOfRows; i++){
             let tr = plannerTable.insertRow();
@@ -38,7 +36,7 @@
     }
 
     function populateTableHeader() {
-        let headerText = ["Hour", "Monday", "Tuesday"];
+        let headerText = ["Hour", "Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
         populateRow(plannerTable, headerText);
     }
 
@@ -58,9 +56,14 @@
 
     function populateTableTimeColumn() {
         let timeBegin = 6;
-        for (let i = 1;i<=4;i++){
-        plannerTable.childNodes[0].childNodes[i].childNodes[0].appendChild(document.createTextNode("0"+timeBegin+":00"));
-        timeBegin++;
+        for (let i = 1;i<=(numberOfRows-1);i++){
+            if(timeBegin<10) {
+                plannerTable.childNodes[0].childNodes[i].childNodes[0].appendChild(document.createTextNode("0" + timeBegin + ":00"));
+                timeBegin++;
+            }else{
+                plannerTable.childNodes[0].childNodes[i].childNodes[0].appendChild(document.createTextNode( timeBegin + ":00"));
+                timeBegin++;
+            }
         }
     }
 
@@ -113,8 +116,7 @@
     function populateTable(table, jsonData) {
         //  let tableContent = JSON.parse(jsonData);
 
-        let rowContent1 = [];
-        let rowContent2 = [];
+
         for (let data of jsonData) {
 
 
