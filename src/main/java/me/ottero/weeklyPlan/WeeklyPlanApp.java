@@ -18,7 +18,18 @@ public class WeeklyPlanApp implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// String sql = "INSERT INTO task ()"
+		// String sql = "INSERT INTO task (id, description, start_date_time,
+		// finish_date_time, id_priority) VALUES(?,?,?,?,?)";
+		// int result = jdbcTemplate.update(sql, "25", "volleyball", "2021-08-26
+		// 16:00:00", "2021-08-26 17:30:00", "2");
+
+		// String sql2 = "";
+
+
+		// if (result > 0) {
+		// System.out.println("A new row has been inserted");
+		// }
+
 
 	}
 
