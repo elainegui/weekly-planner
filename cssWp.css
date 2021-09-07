@@ -1,0 +1,5 @@
+table, tbody {
+    -webkit-user-modify: read-write;
+    -moz-user-modify: read-write;
+    user-modify: read-write;
+}

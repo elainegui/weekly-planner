@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="cssWp.css">
 </head>
 <body>
 <table id="planner" border="1"></table>
 
 <script>
+
 
     let plannerTable = document.getElementById("planner");
     let numberOfRows =19;
@@ -18,6 +20,8 @@
     populateTableHeader();
 
     populateTableTimeColumn();
+
+
 
     function tableCreate(){
 
@@ -33,6 +37,9 @@
                 td.style.height = '30px';
                 }
             }
+
+
+
     }
 
     function populateTableHeader() {
@@ -146,6 +153,26 @@
 
 
     populateTable(plannerTable, jsonData);
+
+
+    //code to make each table cell editable
+     let cells =document.getElementsByTagName('td');
+
+      let activeCell = null;
+      for(let cell in cells){
+          cell.addEventListener('dblclick', function() {
+              if(this.childElementCount == 0) {
+                  let input = document.createElement('input');
+                  input.setAttribute('type', 'textbox');
+                  input.setAttribute('value', this.innerHTML);
+                  this.innerHTML = "";
+                  this.appendChild(input);
+                  activeCell = this;
+              }
+          });
+      }
+
+
 
 
 
