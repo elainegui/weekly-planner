@@ -1,5 +1,52 @@
+body{
+    margin:20px;
+    size: A4;
+
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+
+}
+
 table, tbody {
     -webkit-user-modify: read-write;
     -moz-user-modify: read-write;
     user-modify: read-write;
+}
+
+td{
+    background-color: #f7f7f7;
+    height : 70px;
+
+}
+
+.cell-basic-style{
+    padding: 5px;
+    text-align: center;
+    border: 1px solid darkgrey;
+
+}
+
+.hours-cells{
+    text-align: left;
+    color: #330000;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffcc;
+
+
+}
+.weekdays-cells{
+    font-weight: bold;
+
+}
+
+.weekend-top-cells{
+    background: #ccdcff;
+}
+
+.weekend-body-cells{
+    background: #e6eeff;
 }
