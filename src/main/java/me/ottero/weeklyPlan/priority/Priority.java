@@ -3,6 +3,10 @@ package me.ottero.weeklyPlan.priority;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Priority class specifies the priority levels (low to high)
+ * @author Elaine
+ */
 @Entity
 public class Priority {
 

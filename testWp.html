@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="cssWp.css">
+<meta charset="UTF-8">
+<title>Title</title>
+<link rel="stylesheet" href="cssWp.css">
 </head>
 <body>
-<table id="planner" border="1"></table>
+	<table id="planner" border="1"></table>
 
-<script>
+	<script>
 
 
     let plannerTable = document.getElementById("planner");
@@ -101,7 +101,7 @@
         }
     }
 
-    let jsonData = [
+/*      let jsonData = [
 
         //for Monday
         {
@@ -142,7 +142,7 @@
             "dayOfWeek": "Tuesday",
             "startTime":"09:00"
         }
-    ]
+    ]  */
 
 
 
@@ -177,10 +177,10 @@
     }
 
 
-    populateTable(plannerTable, jsonData);
+  //  populateTable(plannerTable, jsonData);
 
 
-    //code to make each table cell editable
+/*     //code to make each table cell editable
      let cells =document.getElementsByTagName('td');
 
       let activeCell = null;
@@ -195,7 +195,7 @@
                   activeCell = this;
               }
           });
-      }
+      } */
 
 //css to change header style
       let rowHeader =  plannerTable.childNodes[0].childNodes[0];
@@ -205,6 +205,22 @@
     
 
 
+      window.onload = function() {
+    let requestUrl = 'http://localhost:8080/tasks';
+    let request = new XMLHttpRequest();
+    request.open('GET', requestUrl);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function() {
+        const dataTasks = request.response;
+        //alert(dataTasks);
+        //alert(dataTasks[0].description);
+        populateTable(plannerTable, dataTasks);
+
+    }
+     } 
+     
 </script>
 
 </body>

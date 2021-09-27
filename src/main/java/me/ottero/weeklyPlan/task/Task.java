@@ -7,6 +7,11 @@ import javax.persistence.ManyToOne;
 
 import me.ottero.weeklyPlan.priority.Priority;
 
+/**
+ * Task class defines the details of each task that compounds the week planner
+ * table
+ * @author Elaine
+ */
 @Entity
 public class Task {
 	@Id
@@ -25,6 +30,18 @@ public class Task {
 	private Priority priority;
 
 
+	/**
+	 * @param id
+	 *            task unique id
+	 * @param description
+	 *            description of task
+	 * @param startDateTime
+	 *            begin time scheduled for the task
+	 * @param finishDateTime
+	 *            time which the task is scheduled to be done
+	 * @param priority
+	 *            priority related to the task
+	 */
 	public Task(Integer id, String description, String startDateTime, String finishDateTime, Priority priority) {
 		super();
 		this.id = id;
